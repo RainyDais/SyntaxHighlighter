@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <style>
+            :root {
+                --kg-bg: rgb(25, 32, 40);
+                --kg-fg: rgb(225, 225, 245);
+                --kg-fg-darker: rgb(190, 190, 190);
+
+                --kg-primary: #1EACF4;
+
+                --kg-font: Helvetica, sans-serif;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.1.1/custom.min.css">
+        <style>
+            #sh_test_input {
+                border: 1px solid var(--kg-fg-darker);
+                background-color: var(--kg-bg);
+                border-radius: .2rem;
+                color: var(--kg-fg);
+                padding: .2rem;
+                outline: none;
+                height: 50%;
+                width: 50%;
+            }
+
+            .string { color: #ffaaff; }
+            .tag { color: #FF0000; }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.1.1/simple.min.js"></script>
+
+        <script src="./sh/sh.js"></script>
+        <link rel="stylesheet" href="./sh/sh.css">
+    </head>
+    <body class="p-2">
+        <h3 class="mt-0">Example:</h3>
+        <div id="sh_test_input" class="editor"></div>
+        <script>
+            const txtarea = gid("sh_test_input")
+
+            sh.addMatch(/(["'`])(?:(?=(\\?))\2.)*?\1/g, 'string')
+            sh.addMatch(/(\@[a-z0-9]+)/gi, 'tag')
+
+            sh.link(txtarea)
+        </script>
+        <h3>Setup:</h3>
+        <code>
+<pre>&lt;script src="./sh/sh.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="./sh/sh.css"&gt;
+
+&lt;style&gt;
+    .string { color: #ffaaff; }
+    .tag { color: #FF0000; }
+&lt;/style&gt;
+
+&lt;div id="editor"&gt;&lt;/div&gt;</pre>
+        </code>
+        <hr>
+        <code>
+<pre>sh.addMatch(/(["'`])(?:(?=(\\?))\2.)*?\1/g, 'string')
+sh.addMatch(/(\@[a-z0-9]+)/gi, 'tag')
+
+const editorDiv = document.getElementById("editor")
+sh.link(editorDiv)</pre>
+        </code>
+    </body>
+</html>
